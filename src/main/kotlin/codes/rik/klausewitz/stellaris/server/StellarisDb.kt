@@ -1,6 +1,7 @@
 package codes.rik.klausewitz.stellaris.server
 
 import codes.rik.klausewitz.parser.stellaris.GameState
+import codes.rik.klausewitz.stellaris.server.importing.GameImporter
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import com.google.common.collect.Multimap
@@ -18,7 +19,8 @@ import java.io.Closeable
 import java.time.LocalDate
 
 class StellarisDb(client: MongoClient = KMongo.createClient("localhost", 27017)) : Closeable by client {
-    val collection = client.getDatabase("stellaris").getCollection<GameState>()
+    val db = client.getDatabase("stellaris")
+    val collection = db.getCollection<GameState>()
     val importer = GameImporter(this)
 
     private val invalidGames: MutableSet<String> = mutableSetOf()
@@ -64,3 +66,4 @@ class StellarisDb(client: MongoClient = KMongo.createClient("localhost", 27017))
 }
 
 private val logger = KotlinLogging.logger {}
+

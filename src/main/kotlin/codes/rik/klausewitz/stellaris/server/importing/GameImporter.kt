@@ -1,8 +1,9 @@
-package codes.rik.klausewitz.stellaris.server
+package codes.rik.klausewitz.stellaris.server.importing
 
 import codes.rik.klausewitz.parser.parseParadoxFile
 import codes.rik.klausewitz.parser.stellaris.GameState
-import codes.rik.kotlinbits.io.createTempDirectory
+import codes.rik.klausewitz.stellaris.server.StellarisDb
+import codes.rik.kotlinpieces.io.createTempDirectory
 import com.mongodb.client.model.Filters.and
 import com.mongodb.client.model.ReplaceOptions
 import net.lingala.zip4j.core.ZipFile
@@ -11,7 +12,6 @@ import java.nio.file.Path
 
 class GameImporter(private val db: StellarisDb) {
     fun import(path: Path) {
-
         createTempDirectory("stellaris-saves") { dest ->
             val fileName = path.fileName
             val zip = ZipFile(path.toString())

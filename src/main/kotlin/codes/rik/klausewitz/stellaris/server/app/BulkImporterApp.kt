@@ -23,5 +23,5 @@ fun main() {
     }
 }
 
-private val path = Paths.get("/Users/rik/stellaris-saves/save games/mpmrbrownsdiddletradingcoltd2_-1385733640")
+private val path = Paths.get("/Users/rik/stellaris-saves/save games/")
 
